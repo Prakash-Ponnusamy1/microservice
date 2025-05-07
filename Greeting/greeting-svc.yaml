@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: greeting-dplmnt
+  name: greeting-svc
+  namespace: default
+spec:
+  clusterIP: 10.43.123.146
+  clusterIPs:
+  - 10.43.123.146
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30684
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: greeting-dplmnt
+  sessionAffinity: None
+  type: NodePort
